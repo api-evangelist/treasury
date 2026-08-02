@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: live probe of https://treasury.app/.well-known/*
+host: https://treasury.app
+documents:
+- path: /.well-known/oauth-authorization-server   # RFC 8414 — real JSON metadata
+  status: 200
+  file: treasury-oauth-authorization-server.json
+- path: /.well-known/security.txt                  # RFC 9116
+  status: 404
+- path: /.well-known/openid-configuration          # OIDC discovery
+  status: 404
+- path: /.well-known/api-catalog                    # RFC 9727
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+notes: >-
+  treasury.app publishes an RFC 8414 OAuth 2.0 Authorization Server Metadata
+  document scoped to its Model Context Protocol (MCP) server (scopes_supported:
+  ["mcp:connect"]). No OIDC discovery or security.txt is published. Requests to
+  /llms.txt return the Webflow marketing HTML (text/html), not an llms.txt
+  document, so no LLMsTxt artifact is captured.

@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+source: https://treasury.app/.well-known/oauth-authorization-server
+schemes:
+- name: OAuth2
+  source: well-known/treasury-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://treasury.app/oauth/authorize
+    tokenUrl: https://treasury.app/oauth/token
+scopes:
+- scope: mcp:connect
+  description: Connect to the Treasury Model Context Protocol (MCP) server at https://treasury.app/mcp.
+  flows: [authorizationCode]
+  sources: [well-known/treasury-oauth-authorization-server.json]
+notes: >-
+  Only one scope (mcp:connect) is advertised in the authorization server
+  metadata; it gates access to the MCP server. Individual tool-level scopes, if
+  any, are not exposed in the discovery document.

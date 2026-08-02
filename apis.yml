@@ -1,7 +1,31 @@
 aid: treasury
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/treasury.png
 name: Treasury
-description: Treasury is a company surfaced as a portfolio company of bloomberg-beta and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Treasury (treasury.app) is a consumer investing and personal-finance education
+  platform that bills itself as "the first investing platform built for learning
+  as a community" and a "non-judgmental investing community." It pairs
+  creator-led learning communities (workshops, coaching, and discussion forums),
+  commission-free brokerage investing accounts with fractional and recurring
+  investments, and self-guided courses on investing, personal finance, and
+  retirement. Backed by Bloomberg Beta and other investors, Treasury has
+  introduced tens of thousands of new investors to the market. It has no
+  traditional public REST/OpenAPI developer platform, but it does expose an
+  agent-native surface: a hosted Model Context Protocol (MCP) server at
+  treasury.app/mcp guarded by an OAuth 2.1 authorization server (authorization
+  code + PKCE, dynamic client registration, scope mcp:connect).
 url: https://raw.githubusercontent.com/api-evangelist/treasury/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,9 +35,16 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
+- Investing
+- Personal Finance
+- Fintech
+- Brokerage
+- Financial Education
+- MCP
+- Agent
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +54,21 @@ maintainers:
 common:
 - type: Website
   url: https://treasury.app/
+- type: Login
+  url: https://treasury.app/login
+- type: MCPServer
+  name: Treasury MCP Server
+  url: mcp/treasury-mcp.yml
+- type: WellKnown
+  url: well-known/treasury-well-known.yml
+- type: Authentication
+  url: authentication/treasury-authentication.yml
+- type: OAuthScopes
+  url: scopes/treasury-scopes.yml
+- type: DomainSecurity
+  url: security/treasury-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 5
+  pass: local-v1
