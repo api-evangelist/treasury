@@ -1,9 +1,8 @@
 generated: '2026-07-21'
 method: searched
 status: published
-source: >-
-  https://treasury.app/mcp (live JSON-RPC endpoint) +
-  https://treasury.app/.well-known/oauth-authorization-server (RFC 8414 metadata)
+source: https://treasury.app/mcp (live JSON-RPC endpoint) + https://treasury.app/.well-known/oauth-authorization-server
+  (RFC 8414 metadata)
 server:
   name: treasury
   transport: http
@@ -13,17 +12,21 @@ auth:
   type: oauth2
   flow: authorization_code
   pkce: S256
-  dynamic_client_registration: https://treasury.app/oauth/register   # RFC 7591
+  dynamic_client_registration: https://treasury.app/oauth/register
   authorization_endpoint: https://treasury.app/oauth/authorize
   token_endpoint: https://treasury.app/oauth/token
-  scopes: [mcp:connect]
-tools: []   # tool list is OAuth-gated; an unauthenticated initialize returns
-            # {"error":{"code":-32002,"message":"Authentication required: Missing Authorization header"}}
-            # so tools cannot be enumerated without an authorized mcp:connect token.
-notes: >-
-  Treasury exposes a hosted, remote Streamable-HTTP MCP server at
-  https://treasury.app/mcp protected by OAuth 2.1 (authorization code + PKCE,
-  dynamic client registration, scope mcp:connect). This is the provider's
-  agent-native surface; there is no traditional public REST/OpenAPI developer
-  platform. Verified live 2026-07-21: POST /mcp initialize returns a JSON-RPC
-  auth-required error, confirming a real MCP server rather than a catch-all.
+  scopes:
+  - mcp:connect
+tools: []
+notes: 'Treasury exposes a hosted, remote Streamable-HTTP MCP server at https://treasury.app/mcp protected
+  by OAuth 2.1 (authorization code + PKCE, dynamic client registration, scope mcp:connect). This is the
+  provider''s agent-native surface; there is no traditional public REST/OpenAPI developer platform. Verified
+  live 2026-07-21: POST /mcp initialize returns a JSON-RPC auth-required error, confirming a real MCP
+  server rather than a catch-all.'
+deployment:
+  mode: remote
+  endpoint: https://treasury.app/mcp
+  verified: probed
+  probe: live
+  checked: '2026-08-12'
+  source: catalog MCP census
